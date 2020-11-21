@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
+from accounts.managers import CustomUserManager
 
 
 class User(AbstractBaseUser):
@@ -15,6 +16,8 @@ class User(AbstractBaseUser):
     update_time = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
     admin = models.BooleanField(default=False)
+
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -43,6 +46,10 @@ class User(AbstractBaseUser):
     @property
     def is_active(self):
         return self.active
+
+    @property
+    def is_staff(self):
+        return self.admin
 
     def __str__(self):
         return self.email
