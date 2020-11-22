@@ -16,9 +16,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(serializers.ModelSerializer):
-    pass
+class UserLoginSerializer(serializers.ModelSerializer):
 
-    # class Meta:
-    #     model = user
-    #     fields
+    class Meta:
+        model = User
+        fields = [
+            'username', 'email'
+        ]

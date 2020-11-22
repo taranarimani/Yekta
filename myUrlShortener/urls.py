@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from accounts.views import RegisterUserViewSet
+from accounts.views import RegisterUserViewSet, LoginViewSet
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
 router.register('register', RegisterUserViewSet, basename='register')
-# router.register('login', LoginViewSet, basename='login')
+router.register('login', LoginViewSet, basename='login')
 
 schema_view = get_swagger_view(title='Pastebin API')
 
