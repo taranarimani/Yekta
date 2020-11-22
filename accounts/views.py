@@ -19,8 +19,6 @@ class RegisterUserViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            print('injs')
             return Response({'status': status.HTTP_201_CREATED})
         else:
-            print('pos')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

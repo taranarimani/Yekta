@@ -18,10 +18,12 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
-from accounts.views import RegisterUserViewSet
+from accounts.views import RegisterUserViewSet, LoginViewSet
 
 router = routers.DefaultRouter()
 router.register('register', RegisterUserViewSet, basename='register')
+router.register('login', LoginViewSet, basename='login')
+
 schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
