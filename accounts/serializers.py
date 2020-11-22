@@ -14,3 +14,11 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create(**validated_data)
         return user
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    pass
+
+    # class Meta:
+    #     model = user
+    #     fields

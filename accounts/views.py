@@ -9,6 +9,7 @@ from accounts.models import User
 
 class RegisterUserViewSet(viewsets.ModelViewSet):
     serializer_class = RegisterUserSerializer
+    # permission_classes = [AllowAny]
     permission_classes = []
     http_method_names = ['post']
     queryset = User.objects.all()
