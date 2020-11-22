@@ -9,14 +9,14 @@ from accounts.models import User
 
 class RegisterUserViewSet(viewsets.ModelViewSet):
     serializer_class = RegisterUserSerializer
+    permission_classes = []
     http_method_names = ['post']
     queryset = User.objects.all()
 
     @action(detail=False, methods=['post'])
     def create_user(self, request):
-        print('llll')
 
-        serializer = self.serializer_class(request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             print('injs')

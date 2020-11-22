@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework_swagger.views import get_swagger_view
 
 from accounts.views import RegisterUserViewSet
 
 router = routers.DefaultRouter()
 router.register('register', RegisterUserViewSet, basename='register')
+schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('django-rest-swagger/', schema_view, name='django_rest_swagger'),
 ]
