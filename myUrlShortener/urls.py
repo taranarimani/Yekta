@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest-framework import routers
+from rest_framework import routers
 
 from accounts.views import RegisterUserViewSet
 
 router = routers.DefaultRouter()
-router.register('register/', RegisterUserViewSet, basename='register')
+router.register('register', RegisterUserViewSet, basename='register')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls, 'urlShortener')),
+    path('api/', include(router.urls)),
 ]
