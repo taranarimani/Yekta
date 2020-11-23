@@ -3,3 +3,4 @@ psycopg2-binary==2.8.6
 djangorestframework==3.11.1
 django-rest-swagger==2.2.0
 djangorestframework-simplejwt==4.6.0
+celery==4.4.7

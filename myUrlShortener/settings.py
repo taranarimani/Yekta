@@ -130,6 +130,7 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.User'
 
+# REST
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # 'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -143,9 +144,17 @@ REST_FRAMEWORK = {
 
 }
 
+#
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.authenticate.EmailOrUsernameBackend',
 ]
+# JWT
 # beacuse this project test,JWT_SECREt_KEY doesn't hide
 JWT_SECRET_KEY = 'JWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEY'
+
+# CELEY
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_BROLER_TRANSPORT = 'redis'
+# CELERY_RESULT_BACKEND = 'redis://redis'
+CELERY_RESULT_SERIALIZER = 'json'

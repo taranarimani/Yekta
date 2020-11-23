@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from urlShorteners.serializers import UrlSerializer
 from urlShorteners.permisions import IsUser
+from urlShorteners.tasks import addba
 
 # Create your views here.
 
@@ -16,6 +17,7 @@ class UrlViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def create_url(self, request):
+        addba()
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()

@@ -35,7 +35,6 @@ class LoginViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def login(self, request):
-        print('inja')
 
         data = request.data
         # username = data.get('username')
@@ -47,15 +46,10 @@ class LoginViewSet(viewsets.ModelViewSet):
         password = data.get('password')
         user = auth.authenticate(username=username, password=password)
         if user:
-            print('inja3')
             auth_token = jwt.encode(
                 {'username': user.username}, settings.JWT_SECRET_KEY)
-            print('oinawrf')
             serializer = self.serializer_class(user)
-            print('inja4')
             data = {
                 'user': serializer.data, 'token': auth_token}
-
             return Response(data, status=status.HTTP_200_OK)
-
         return Response({'status': 'un authorized'}, status=status.HTTP_401_UNATHORIZED)
