@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     # local apps
     'accounts.apps.AccountsConfig',
+    'urlShorteners.apps.UrlshortenersConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,4 +148,4 @@ AUTHENTICATION_BACKENDS = [
     'accounts.authenticate.EmailOrUsernameBackend',
 ]
 # beacuse this project test,JWT_SECREt_KEY doesn't hide
-JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
+JWT_SECRET_KEY = 'JWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEY'

@@ -36,7 +36,7 @@ class Url(models.Model):
                 self.base_url + self.create_time, k=n))
             # short_url = Shortener(self.user.username)
             short_url = md5(res.encode()).hexdigest()[:lenght]
-            self.short_url = f"https://myURLshortner.{(re.search('https://(.*)/',self.base_url)).group(1)}/r/{short_url}{self.suggestion]}"
+            self.short_url = f"https://myURLshortner.{(re.search('https://(.*)/',self.base_url)).group(1)}/r/{short_url}{self.suggestion}"
         self.save()
 
     def __str__(self):
