@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from accounts.managers import CustomUserManager
 
 
-class User(AbstractBaseUser):
+class User(AbstractUser):
 
     email = models.EmailField(verbose_name='Email addres',
                               max_length=250,
@@ -33,11 +33,11 @@ class User(AbstractBaseUser):
     def get_username(self):
         return self.username
 
-    def has_perm(self, perm, obj=None):
-        return True
+    # def has_perm(self, perm, obj=None):
+    #     return True
 
-    def has_module_perms(self, app_label):
-        return True
+    # def has_module_perms(self, app_label):
+    #     return True
 
     @property
     def is_admin(self):

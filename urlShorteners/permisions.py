@@ -12,7 +12,7 @@ class IsUser(BasePermission):
 
         result = True
         try:
-            User.objects.get(user=request.user)
+            User.objects.get(email=request.user)
         except User.DoesNotExist:
             result = False
         return result

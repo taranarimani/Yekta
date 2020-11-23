@@ -23,11 +23,12 @@ class Url(models.Model):
         verbose_name_plural = ("Urls")
         ordering = ['-create_time']
 
-    def __init__(self, suggestion):
+    def __init__(self, suggestion="", *args, **kwargs):
         super(Url, self).__init__()
         self.suggestion = suggestion
+        print('inintititit')
 
-    def post_save(self):
+    def short_url_save(self):
         if not self.id:
             lenght = 8
             # res = ''.join(random.choices(

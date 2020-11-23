@@ -1,7 +1,8 @@
 from django.conf import settings
 from celery import Celery
-import os
 import django
+import os
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myUrlShortener.settings')
 django.setup()

@@ -26,13 +26,13 @@ from urlShorteners.views import UrlViewSet
 router = routers.DefaultRouter()
 router.register('register', RegisterUserViewSet, basename='register')
 router.register('login', LoginViewSet, basename='login')
-router.register('url', UrlViewSet, basename='url')
+router.register('shortener', UrlViewSet, basename='shortener')
 
 schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/yektanet/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='refresh_token'),
     path('django-rest-swagger/', schema_view, name='django_rest_swagger'),
