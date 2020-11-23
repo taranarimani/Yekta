@@ -23,21 +23,8 @@ class Url(models.Model):
         verbose_name_plural = ("Urls")
         ordering = ['-create_time']
 
-    def short_url_save(self, suggestion):
-        if not self.id:
-            lenght = 8
-            # res = ''.join(random.choices(
-            #     string.ascii_uppercase + self.create_time, k=n))
-            res = ''.join(random.choices(
-                self.base_url + self.create_time, k=n))
-            # short_url = Shortener(self.user.username)
-            short_url = md5(res.encode()).hexdigest()[:lenght]
-            self.short_url = f"https://myURLshortner.{(re.search('https://(.*)/',self.base_url)).group(1)}/r/{short_url}{suggestion}"
-        # if id is duplicate
-        return self.short_url
-
     def __str__(self):
-        return f"user:{self.user.username},baseUrl:{self.base_url},visits:{self.visits}"
+        return f"baseUrl:{self.base_url},visits:{self.visits}"
 
     def get_absolute_url(self):
         return reverse('', args=[self.create_time, self.base_url])
