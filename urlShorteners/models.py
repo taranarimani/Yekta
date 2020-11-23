@@ -11,7 +11,7 @@ import string
 class Url(models.Model):
 
     base_url = models.URLField()
-    short_url = models.URLField(unique=True, blank=True)
+    short_url = models.URLField(blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     visits = models.IntegerField(default=0)
     user = models.ForeignKey(to=User,

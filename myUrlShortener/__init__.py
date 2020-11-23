@@ -1,1 +1,1 @@
-from myUrlShortener.cellery import celery_app
+from myUrlShortener.celery import celery_app

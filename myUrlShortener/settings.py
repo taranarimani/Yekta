@@ -147,7 +147,7 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'create_url_rate_throttle': '60/min',
         'request_rate_throttle': '1000/min'
-    }
+    },
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
 }
@@ -163,5 +163,5 @@ JWT_SECRET_KEY = 'JWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEY'
 
 
 # CELERY
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost'
-CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
