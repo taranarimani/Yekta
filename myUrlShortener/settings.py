@@ -140,6 +140,14 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'myUrlShortener.throttles.CreateUrlRateThrottle',
+        'myUrlShortener.throttles.RequestRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'create_url_rate_throttle': '60/min',
+        'request_rate_throttle': '1000/min'
+    }
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
 }
@@ -153,8 +161,7 @@ AUTHENTICATION_BACKENDS = [
 # beacuse this project test,JWT_SECREt_KEY doesn't hide
 JWT_SECRET_KEY = 'JWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEY'
 
-# CELEY
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_BROLER_TRANSPORT = 'redis'
-# CELERY_RESULT_BACKEND = 'redis://redis'
-CELERY_RESULT_SERIALIZER = 'json'
+
+# CELERY
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost'
+CELERY_RESULT_BACKEND = 'rpc://'

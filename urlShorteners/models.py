@@ -11,7 +11,7 @@ import string
 class Url(models.Model):
 
     base_url = models.URLField()
-    short_url = models.URLField(unique=True)
+    short_url = models.URLField(unique=True, blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
     visits = models.IntegerField(default=0)
     user = models.ForeignKey(to=User,
@@ -23,12 +23,7 @@ class Url(models.Model):
         verbose_name_plural = ("Urls")
         ordering = ['-create_time']
 
-    def __init__(self, suggestion="", *args, **kwargs):
-        super(Url, self).__init__()
-        self.suggestion = suggestion
-        print('inintititit')
-
-    def short_url_save(self):
+    def short_url_save(self, suggestion):
         if not self.id:
             lenght = 8
             # res = ''.join(random.choices(
@@ -37,8 +32,9 @@ class Url(models.Model):
                 self.base_url + self.create_time, k=n))
             # short_url = Shortener(self.user.username)
             short_url = md5(res.encode()).hexdigest()[:lenght]
-            self.short_url = f"https://myURLshortner.{(re.search('https://(.*)/',self.base_url)).group(1)}/r/{short_url}{self.suggestion}"
-        self.save()
+            self.short_url = f"https://myURLshortner.{(re.search('https://(.*)/',self.base_url)).group(1)}/r/{short_url}{suggestion}"
+        # if id is duplicate
+        return self.short_url
 
     def __str__(self):
         return f"user:{self.user.username},baseUrl:{self.base_url},visits:{self.visits}"
