@@ -6,7 +6,7 @@ from rest_framework.decorators import action
 from django.conf import settings
 from django.contrib import auth
 from accounts.models import User
-from accounts.tasks import send_validation_email
+from accounts.tasks import send_validation_email_task
 import jwt
 
 
@@ -23,7 +23,7 @@ class RegisterUserViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            send_validation_email.delay(serializer)
+            send_validation_email_task.delay(serializer)
             return Response({'status': status.HTTP_201_CREATED})
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

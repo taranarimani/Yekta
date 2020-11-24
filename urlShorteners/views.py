@@ -4,7 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from urlShorteners.serializers import UrlSerializer
 from urlShorteners.permisions import IsUser
-from urlShorteners.tasks import task_short_url
+from urlShorteners.tasks import short_url_task
 
 from urlShorteners.models import Url
 
@@ -18,6 +18,7 @@ class UrlViewSet(viewsets.ModelViewSet):
     permission_classes = [IsUser]
     serializer_class = UrlSerializer
     queryset = Url.objects.all()
+    throttle_classes = 'create_url_rate_throttle'
 
     @action(detail=False, methods=['post'])
     def create_url(self, request):
@@ -25,7 +26,7 @@ class UrlViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            short_url = task_short_url.delay(request.data.get(
+            short_url = short_url_task.delay(request.data.get(
                 'base_url'), request.data.get('suggestion'), serializer.id)
             serializer.short_url = short_url
             serializer.save()

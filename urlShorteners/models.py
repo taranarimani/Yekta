@@ -40,7 +40,8 @@ class UrlInfo(models.Model):
     url = models.ForeignKey(to=Url,
                             on_delete=models.CASCADE,
                             related_name="url")
-    use_time = models.DateTimeField(auto_now_add=True)
+    use_date = models.DateTimeField(auto_now_add=True)
+    use_time = models.TimeField(auto_now_add=True)
     device = models.CharField(max_length=20, choices=DEVISE_MODELS)
     browser = models.CharField(max_length=50)
 

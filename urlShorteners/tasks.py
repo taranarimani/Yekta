@@ -9,7 +9,7 @@ import time
 
 
 @shared_task
-def task_short_url(base_url, suggestion, id):
+def short_url_task(base_url, suggestion, id):
     url = Url.objects.get(id=id)
     lenght = 8
     # res = ''.join(random.choices(
