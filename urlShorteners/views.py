@@ -1,12 +1,11 @@
-from django.shortcuts import render
+from urlShorteners.models import Url
+from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from urlShorteners.serializers import UrlSerializer
 from urlShorteners.permisions import IsUser
 from urlShorteners.tasks import short_url_task
-
-from urlShorteners.models import Url
 
 
 # Create your views here.
