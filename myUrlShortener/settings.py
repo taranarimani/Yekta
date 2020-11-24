@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # third-party apps
     'rest_framework',
     'rest_framework_swagger',
+    'django_celery_beat',
     # local apps
     'accounts.apps.AccountsConfig',
     'urlShorteners.apps.UrlshortenersConfig',
@@ -165,3 +166,11 @@ JWT_SECRET_KEY = 'JWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEY'
 # CELERY
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'narimanitara@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
